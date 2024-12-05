@@ -2,46 +2,45 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 
-
 const seed = async () => {
-        const createMany = await prisma.Ingredients.createMany({
+        const createMany = await prisma.ingredients.createMany({
             data: [
                 {
                     name: "carrot",
-                    tag: "savory"
+                    tag: "Savory"
                 },
                 {
                     name: "ghost pepper",
-                    tag: "spicy"
+                    tag: "Spicy"
                 },
                 {
                     name: "chocolate",
-                    tag: "sweet"
+                    tag: "Sweet"
                 },
                 {
                     name: "arsenic",
-                    tag: "spicy"
+                    tag: "Spicy"
                 },
                 {
                     name: "milk",
-                    tag: "dairy"
+                    tag: "Dairy"
                 },
                 {
                     name: "cheese wheel",
-                    tag: "dairy"
+                    tag: "Dairy"
                 },
                 {
                     name: "4 pounds of sugar",
-                    tag: "sweet"
+                    tag: "Sweet"
                 },
                 {
                     name: "tomato",
-                    tag: "sweet"
+                    tag: "Sweet"
                 },
             ]})}
 
 const seed1 = async () => {
-        const createMany = await prisma.Methods.createMany({
+        const createMany = await prisma.methods.createMany({
             data: [
                 {
                     name: "Cook"
@@ -64,10 +63,10 @@ const seed1 = async () => {
             ]})}
 
 const seed2 = async () => {
-        const createMany = await prisma.Steps.createMany({
+        const createMany = await prisma.steps.createMany({
             data: [
                 {
-                    name: "{method} {ingredient} for 2 minutes"
+                    name: '${method} ${ingredient} for 2 minutes'
                 }, 
                 {
                     name: "{method} {ingredient} until you're done"
@@ -94,6 +93,10 @@ const seed2 = async () => {
                     name: "Don't look behind you :("
                 }, 
             ]})}
+
+seed()
+seed1()
+seed2()
             
 
 
