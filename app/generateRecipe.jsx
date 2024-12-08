@@ -72,7 +72,7 @@ Select how many steps your recipe should be:
       const tag1 = document.getElementById("ingredientTag1").value
       const tag2 = document.getElementById("ingredientTag2").value
       const StepNum = document.getElementById("stepnum").value
-      console.log(tag1,tag2,StepNum)
+      //console.log(tag1,tag2,StepNum)
       Choices.push(tag1)
       Choices.push(tag2)
       Choices.push(StepNum)
