@@ -12,10 +12,10 @@ export default function Display(props) {
   let recipeList=props.recipeList
   let tagsOptions=props.tags
 
-  let names =[] 
-  names = recipeList.map(recipeList => recipeList.name)
+  
+  let names = recipeList.map(recipeList => recipeList.name)
   let images = recipeList.map(recipeList => recipeList.image)
-  let steps = recipeList.map(recipeList => recipeList.stepNum)
+  //let steps = recipeList.map(recipeList => recipeList.stepNum)
   let instructions = recipeList.map(recipeList => recipeList.instructions)
   let tags = recipeList.map(recipeList => recipeList.tag)
   
@@ -72,7 +72,7 @@ export default function Display(props) {
     function textForm(props){
       let recipe=[]
       let list = instructions[props].split(',')
-       recipe.push(<p>Recipe #{props+1}: {names[props]}</p>),
+       recipe.push(<a className = "links" href={"/recipes/" + [props]}>Recipe #{props+1}: {names[props]}</a>),
        recipe.push(<img src={images[props]} alt='recipeImage' width='200'/>),
        recipe.push(<p>Tags: {tags[props]}</p>)
        return(<div key={"list"+props}>
