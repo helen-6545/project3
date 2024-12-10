@@ -12,6 +12,13 @@ export default async function InsertRecipes(formData) {
 
     //console.log(formData.get("recipeSteps"))
 
+    let instructions = formData.get("recipeSteps")
+    let instructionsText = ""
+
+    //for(let i=0; i<instructions.length; i++){
+   //   instructionsText+=(instructions[i])
+   // }
+
     await prisma.recipes.create({
         data: {
           name: formData.get("recipeName"),

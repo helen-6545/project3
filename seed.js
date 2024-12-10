@@ -149,7 +149,7 @@ const seed2 = async () => {
                     name: "{method} {ingredient} for 10 minutes"
                 }, 
                 {
-                    name: "{method} {ingredient} and leave it. Take a load off! Wait, is something burning?"
+                    name: "{method} {ingredient} and leave it. Take a load off! Wait! Is something burning?"
                 }, 
                 {
                     name: "Preheat oven to 350 degrees"
@@ -164,7 +164,7 @@ const seed2 = async () => {
                     name: "{method} {ingredient}. Good job!"
                 }, 
                 {
-                    name: "{method} {ingredient}, ponder takeout"
+                    name: "{method} {ingredient}. Ponder takeout"
                 }, 
                 {
                     name: "{method} {ingredient} but ultimately say it's good enough"
@@ -176,7 +176,7 @@ const seed2 = async () => {
                     name: "{method} {ingredient} until it's in little tiny pieces"
                 }, 
                 {
-                    name: "{method} {ingredient}, don't ponder life"
+                    name: "{method} {ingredient}. Don't ponder life"
                 }, 
                 {
                     name: "Realize you don't know how to cook"
@@ -188,16 +188,16 @@ const seed2 = async () => {
                     name: "Now do that again"
                 }, 
                 {
-                    name: "Ignore the next step, it's A TRAP!!!!"
+                    name: "Ignore the next step it's A TRAP!!!!"
                 }, 
                 {
-                    name: "Nice job loser, that's exactly what I wanted you to do"
+                    name: "Nice job loser... That's exactly what I wanted you to do"
                 }, 
                 {
-                    name: "I bet now you're gonna want to {method} {ingredient}, huh?"
+                    name: "I bet now you're gonna want to {method} {ingredient} huh?"
                 }, 
                 {
-                    name: "Wait, did you forget the {ingredient}? Literally how? It's the most important ingredient!"
+                    name: "Wait... did you forget the {ingredient}? Literally how? It's the most important ingredient!"
                 }, 
                 {
                     name: "Go back to the store"

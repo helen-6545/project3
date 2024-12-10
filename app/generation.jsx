@@ -3,9 +3,9 @@ import React from 'react';
 import {useState } from 'react'
 import {useRouter} from "next/navigation";
 import recipeList from "./page"
-import Push from './page'
+
 //import sqlite3 from "sqlite3";
-import {RecipePush} from './push'
+
 import InsertRecipes from './insertRecipe'
 
 

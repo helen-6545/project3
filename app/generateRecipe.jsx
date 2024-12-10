@@ -123,7 +123,8 @@ Select how many steps your recipe should be:
             let stepP = <p key={"step"+i}>{step}</p>
             allSteps.push(step)
             allStepsDisplay.push(stepP)
-            allStepsString+="<p key={"+i+"}>"+step+"</p>"
+            allStepsString+=(step+",")
+            //allStepsString+="<p key={"+i+"}>"+step+"</p>"
         }
       generation=true
       router.refresh()

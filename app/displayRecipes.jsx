@@ -3,8 +3,9 @@ import React from 'react';
 import {useState } from 'react'
 import {useRouter} from "next/navigation";
 import recipeList from "./page"
+//import parse from 'html-react-parser';
 
-let recipeText = ""
+
 
 
 export default function Display(props) {
@@ -12,7 +13,8 @@ export default function Display(props) {
   let recipeList=props.recipeList
   let tagsOptions=props.tags
 
-  let names = recipeList.map(recipeList => recipeList.name)
+  let names =[] 
+  names = recipeList.map(recipeList => recipeList.name)
   let images = recipeList.map(recipeList => recipeList.image)
   let steps = recipeList.map(recipeList => recipeList.stepNum)
   let instructions = recipeList.map(recipeList => recipeList.instructions)
@@ -20,7 +22,11 @@ export default function Display(props) {
   let likes = recipeList.map(recipeList => recipeList.likes)
 
   let dropDownText=dropDown()
-  RecipeShow()
+  let recipeText = RecipeShow()
+  //const parser = new DOMParser();
+  //const text = parser.parseFromString(recipeText, "text/html");
+
+  
   
   return (
     <div>
@@ -33,12 +39,30 @@ export default function Display(props) {
 
     </div>)
     function RecipeShow(){
+      let recipe=[]
+
+      
+      //console.log(list)
       for(let i=0; i<recipeList.length; i++){
-       recipeText+="<p>Recipe #"+i+": "+names[i]+"</p><br></br>"
-       recipeText+="<img src='"+images[i]+"' alt='recipe"+i+"image' width=200><br></br><br></br>"
-       recipeText+=instructions[i]+"<br></br><br></br>"
-       recipeText+="<p>Tags: "+tags[i]+"</p><br></br><br></br><br></br>"
+      let list = instructions[i].split(',')
+      console.log(list)
+       recipe.push(<p>Recipe #{i+1}: {names[i]}</p>),
+       recipe.push(<img src={images[i]} alt='recipeImage' width='200'/>),
+       recipe.push(<p>Tags: {tags[i]}</p>)
+       //recipe.push(listMake(instructions[i]))
+       return(<div key={i}>
+        {recipe}<br></br>
+        {list.map((list) => (
+        <p value={list} key={list}>{list}</p>))}</div>)
+       
       }
+      return recipe
+    }
+    function listMake(props){
+      let list = props.split(',')
+      console.log(list)
+      {list.map((list) => (
+        recipe.push(<p value={list} key={list}>{list}</p>)))}
     }
     function dropDown(){
       return(
