@@ -10,7 +10,7 @@ export default async function InsertRecipes(formData) {
     formData.get("recipeImage")
     formData.get("recipeSteps")*/
 
-    console.log(formData.get("recipeSteps"))
+    //console.log(formData.get("recipeSteps"))
 
     await prisma.recipes.create({
         data: {
@@ -18,7 +18,8 @@ export default async function InsertRecipes(formData) {
           image: formData.get("recipeImage"),
           stepNum: Number(formData.get("stepNumber")),
           instructions: String(formData.get("recipeSteps")),
-          tag: String(formData.get("recipeTags"))
+          tag: String(formData.get("recipeTags")),
+          likes: 0
         },
       });
 

@@ -33,4 +33,5 @@ model Recipes {
   stepNum          Int
   instructions     String
   tag              String
+  likes            Int     
 }

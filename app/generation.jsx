@@ -15,43 +15,43 @@ let inputShow = false
 let recipeTemplete = {name:"", image:"", stepNum:0, instructions:[], tag:[]}
 
 
-let finalized = []
+/*let finalized = []
 let finalizedDisplay = []
 
-let allStepsString = ""
+let allStepsString = ""*/
 
 export default function Generation(props) {
   //const router = useRouter();
-  let ingredients=props.ingredients
-  let methods=props.methods
-  let steps=props.steps
-  let tagsFull=props.tagsFull
-  let Choices=props.listChoice
-  let StepNum=Choices[5]-1
+  let allStepsDisplay=props.allStepsDisplay
+  let allStepsString=props.allStepsString
+  let StepNum=props.StepNum
+  let tagList=props.tagList
+  //let Choices=props.listChoice
+  //let StepNum=Choices[5]-1
 
-  let ingredient1 =[]
+  /*let ingredient1 =[]
   let ingredient2 =[]
   let ingredient3 =[]
   let ingredient4 =[]
-  let ingredient5 =[]
+  let ingredient5 =[]*/
 
-  let potentialIngredients = []
+ // let potentialIngredients = []
 
-  let allIngredients =[]
-  let allMethods =[]
+ // let allIngredients =[]
+  //let allMethods =[]
 
-  let step
+  //let step
 
-  let allSteps = []
-  let allStepsDisplay = []
-  let tagList = []
+  //let allSteps = []
+  //let allStepsDisplay = []
+  //let tagList = []
 
   //let recipeDatabase = SQLite.openDatabase({  name: 'testTable', //Name of my table
     //createFromLocation: "~MyDB.db", })// Name of my DB
 
     //const recipeDatabase = new sqlite3.Database('prisma\dev.db');
 
-  for(let i=0; i<5; i++){
+  /*for(let i=0; i<5; i++){
     if(Choices[i]!="nothing"){
       tagList.push(Choices[i])
     }
@@ -66,7 +66,7 @@ export default function Generation(props) {
   /*for(let i=0; i<tagsFull.length; i++){
     if (tagsFull[i] === (Choices[1])){
      ingredient2.push(ingredients[i])
-    }}*/
+    }}
 
     for(let i=(StepNum); i>=0; i--){
         allIngredients.push(potentialIngredients[Math.floor(Math.random()*potentialIngredients.length)])
@@ -85,7 +85,7 @@ export default function Generation(props) {
         allSteps.push(step)
         allStepsDisplay.push(stepP)
         allStepsString+="<p key={"+i+"}>"+step+"</p>"
-    }
+    }*/
 
     
 

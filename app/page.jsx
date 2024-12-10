@@ -26,7 +26,7 @@ const recipeList = await prisma.recipes.findMany()
 
 return( <div>
     
-    <Home ingredientList={ingredientList} methodList={methodList} stepList={stepList}> </Home>
+    <Home ingredientList={ingredientList} methodList={methodList} stepList={stepList} recipeList={recipeList}> </Home>
 
 
 

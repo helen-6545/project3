@@ -36,7 +36,7 @@
     "app/generateRecipe.jsx",
     "app/page.jsx",
     "app/pageLayout.jsx"
-  ],
+, "app/displayRecipes.jsx"  ],
   "exclude": [
     "node_modules"
   ]

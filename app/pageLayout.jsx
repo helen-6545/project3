@@ -4,8 +4,8 @@ import {useState } from 'react'
 import {useRouter} from "next/navigation";
 
 import Generate from './generateRecipe'
-import InsertIngredient from './insertIngredients'
-import Display from './savedRecipes'
+import Insert from './insert'
+import Display from './displayRecipes'
 
 let generatePage = false;
 let insertPage = false
@@ -17,6 +17,7 @@ export default function Home(props) {
   let ingredientList=props.ingredientList
   let methodList=props.methodList
   let stepList=props.stepList
+  let recipeList=props.recipeList
 
   //console.log(ingredientList)
 
@@ -58,9 +59,9 @@ export default function Home(props) {
         </button>
         
 
-        {generatePage && <div> {Generate(ingredientList,methodList,stepList)}</div>}
-        {insertPage && <div>{InsertIngredient()}</div>}   
-        {displayPage && <div>{Display()}</div>}   
+        {generatePage && <Generate ingredientList={ingredientList} methods={methods} stepList={stepList}></Generate>}
+        {insertPage && <Insert></Insert>}   
+        {displayPage && <Display recipeList={recipeList} tags={tags}></Display>}   
 
 
         </div>)

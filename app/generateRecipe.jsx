@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import {useState } from 'react'
+//import {useState } from 'react'
 import {useRouter} from "next/navigation";
 import Generation from "./generation"
 //import {ingredientList, tags} from "./page"
@@ -8,45 +8,36 @@ import Generation from "./generation"
 //import stepList from "./page"
 let generation = false
 
-let ingredient1 =[]
-let ingredient2 =[]
-
 let allIngredients =[]
 let allMethods =[]
-
+let potentialIngredients = []
 let step
+let allSteps = []
+let allStepsDisplay = []
+let tagList = []
+let allStepsString = ""
+let StepNum
 
+export default function Generate(props) {
+  const router = useRouter();
 
-export default function Generate(ingredientList,methodList,stepList) {
-  //const router = useRouter();
-  //const tags = ingredientList.data.map((ingredientList, index) => {
-    //return <div>{ingredientList.tag}</div>
-  //})
+  let ingredientList = props.ingredientList
+  let methods = props.methods
+  let stepList = props.stepList
 
-  //const tags = new Set()
-  //ingredientList.map(ingredientList => tags.add(ingredientList.tag))
-
-  //const ingredientList = props.ingredientList
-  //const methodList = props.methodList
-  //const stepList = props.stepList
   let ingredients = ingredientList.map(ingredientList => ingredientList.name)
   let tagsFull = ingredientList.map(ingredientList => ingredientList.tag)
-  //console.log(tagsFull)
-  let methods = methodList.map(methodList => methodList.name)
+
   let steps = stepList.map(stepList => stepList.name)
   let tags = [...new Set(tagsFull)]
-  //console.log(tags)
+
   let dropdown1 = dropDown(1)
   let dropdown2 = dropDown(2)
   let dropdown3 = dropDown(3)
   let dropdown4 = dropDown(4)
   let dropdown5 = dropDown(5)
   let Choices = []
-  const [listChoice, setListChoice] = useState([]);
 
-  //if(generation){
-  //  generation()
- // }
   
   return (
     <div>
@@ -70,7 +61,7 @@ Select how many steps your recipe should be:
 <button className="enterButtons" onClick={selectionCheck}>
           Ready!
         </button>
-        {generation && <Generation ingredients={ingredients}methods={methods}steps={steps}tagsFull={tagsFull}listChoice={listChoice}></Generation>}
+        {generation && <Generation allStepsDisplay={allStepsDisplay} allStepsString={allStepsString} tagList={tagList} StepNum={StepNum}></Generation>}
     </div>)
 
     function dropDown(num){
@@ -92,7 +83,7 @@ Select how many steps your recipe should be:
       const tag3 = document.getElementById("ingredientTag3").value
       const tag4 = document.getElementById("ingredientTag4").value
       const tag5 = document.getElementById("ingredientTag5").value
-      const StepNum = document.getElementById("stepnum").value
+      StepNum = document.getElementById("stepnum").value
       //console.log(tag1,tag2,StepNum)
       Choices.push(tag1)
       Choices.push(tag2)
@@ -100,42 +91,42 @@ Select how many steps your recipe should be:
       Choices.push(tag4)
       Choices.push(tag5)
       Choices.push(StepNum)
-      setListChoice(Choices)
+      //setListChoice(Choices)
+      setSteps()
+    }
+
+    function setSteps(){
+      for(let i=0; i<5; i++){
+        if(Choices[i]!="nothing"){
+          tagList.push(Choices[i])
+        }
+      }
+      
+      for(let j=0; j<=tagList.length; j++){
+        for(let i=0; i<tagsFull.length; i++){
+          if (tagsFull[i] === (tagList[j])){
+            potentialIngredients.push(ingredients[i])
+        }}}
+    
+        for(let i=(StepNum); i>=0; i--){
+            allIngredients.push(potentialIngredients[Math.floor(Math.random()*potentialIngredients.length)])
+        }
+        for(let i=StepNum; i>=0; i--){
+            allMethods.push(methods[Math.floor(Math.random()*methods.length)])
+        }
+    
+    
+       for(let i=StepNum; i>0; i--){
+            step =(steps[Math.floor(Math.random()*steps.length)])
+            step = step.replace("{method}",allMethods[i])
+            step = step.replace("{ingredient}",allIngredients[i])
+            let stepP = <p key={"step"+i}>{step}</p>
+            allSteps.push(step)
+            allStepsDisplay.push(stepP)
+            allStepsString+="<p key={"+i+"}>"+step+"</p>"
+        }
       generation=true
       router.refresh()
     }
-
-/*function generation(){
-  let StepNum=Choices[2]-1
-  for(let i=0; i<tagsFull.length; i++){
-    if (tagsFull[i] === (Choices[0])){
-     ingredient1.push(ingredients[i])
-    }}
-  for(let i=0; i<tagsFull.length; i++){
-    if (tagsFull[i] === (Choices[1])){
-     ingredient2.push(ingredients[i])
-    }}
-
-    for(let i=(StepNum/2); i>=0; i--){
-        allIngredients.push(ingredient1[Math.floor(Math.random()*ingredient1.length)])
-        allIngredients.push(ingredient2[Math.floor(Math.random()*ingredient2.length)])
-    }
-    for(let i=StepNum; i>=0; i--){
-        allMethods.push(methods[Math.floor(Math.random()*methods.length)])
-    }
-
-
-   for(let i=StepNum; i>=0; i--){
-        step =(steps[Math.floor(Math.random()*steps.length)])
-        step = step.replace("{method}",allMethods[i])
-        step = step.replace("{ingredient}",allIngredients[i])
-        let stepP = <p>{step}</p>
-        allSteps.push(step)
-        allStepsDisplay.push(stepP)
-    }
-    return(
-      <div>generation</div>
-    )
-}*/
 
 }
