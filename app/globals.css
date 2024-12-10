@@ -18,6 +18,7 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  margin:20px;
 }
 
 .mainButtons{
@@ -30,6 +31,30 @@ body {
   display: inline-block;
   border-radius: 10%;
   width: 150px;
+}
+
+.enterButtons{
+  background: #838ad7;
+  color:#0a0a0a;
+  margin: 7px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 10%;
+  width: 100px;
+}
+
+.dropdown{
+  background: #c2c4e4;
+  color:#0a0a0a;
+  margin: 7px;
+}
+
+.textbox{
+  background: #e8d9f5;
+  color:#0a0a0a;
+  margin: 7px;
 }
 
 @layer utilities {

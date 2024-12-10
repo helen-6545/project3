@@ -2,6 +2,7 @@
 import React from 'react';
 import {useState } from 'react'
 import {useRouter} from "next/navigation";
+import LikesUpdate from './likesPush'
 
 
 let searchShow = []
@@ -12,10 +13,9 @@ export default function Display(props) {
   let recipeList=props.recipeList
   let tagsOptions=props.tags
 
-  
+  let ids = recipeList.map(recipeList => recipeList.id)
   let names = recipeList.map(recipeList => recipeList.name)
   let images = recipeList.map(recipeList => recipeList.image)
-  //let steps = recipeList.map(recipeList => recipeList.stepNum)
   let instructions = recipeList.map(recipeList => recipeList.instructions)
   let tags = recipeList.map(recipeList => recipeList.tag)
   
@@ -29,10 +29,8 @@ export default function Display(props) {
   for(let i=0; i<recipeList.length; i++){
     showAll.push(i)
   }
-  if(recipeText==""){
+  if(recipeText===""){
   setRecipeText(RecipeShow(showAll))}
-  //const parser = new DOMParser();
-  //const text = parser.parseFromString(recipeText, "text/html");
 
   
   
@@ -72,17 +70,25 @@ export default function Display(props) {
     function textForm(props){
       let recipe=[]
       let list = instructions[props].split(',')
-       recipe.push(<a className = "links" href={"/recipes/" + [props]}>Recipe #{props+1}: {names[props]}</a>),
-       recipe.push(<img src={images[props]} alt='recipeImage' width='200'/>),
-       recipe.push(<p>Tags: {tags[props]}</p>)
+       recipe.push(<p key='1'>Recipe #{props+1}: {names[props]}</p>),
+       recipe.push(<img key='2' src={images[props]} alt='recipeImage' width='200'/>),
+       recipe.push(<p key='3'>Tags: {tags[props]}</p>)
+       recipe.push(<p key='4'>Likes: {likes[props]}</p>)
        return(<div key={"list"+props}>
         {recipe}<br></br>
         {list.map((list) => (
-        <p value={list} key={list}>{list}</p>))}<br></br><br></br><br></br></div>)
+        <p value={list} key={list}>{list}</p>))}<br></br>
+        <form action={LikesUpdate}>
+        <input type="hidden" name="recipeID" value={ids[props]}></input>
+        <input type="hidden" name="recipeLikes" value={likes[props]}></input>
+        <button className="enterButtons" type="submit">
+          Like!
+        </button></form>
+        <br></br><br></br></div>)
     }
     function dropDown(){
       return(
-        <select id={"recipeTagfind"} key={"recipeTagfind"}>
+        <select className="dropdown" id={"recipeTagfind"} key={"recipeTagfind"}>
           <option value="all" key={"all"}>
           Show All
         </option>

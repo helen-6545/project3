@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import {useState } from 'react'
 import {useRouter} from "next/navigation";
 
 import Generate from './generateRecipe'
@@ -19,32 +18,11 @@ export default function Home(props) {
   let stepList=props.stepList
   let recipeList=props.recipeList
 
-  //console.log(ingredientList)
-
-  let ingredients = ingredientList.map(ingredientList => ingredientList.name)
   let tagsFull = ingredientList.map(ingredientList => ingredientList.tag)
-  //console.log(tagsFull)
   let methods = methodList.map(methodList => methodList.name)
-  let steps = stepList.map(stepList => stepList.name)
   let tags = [...new Set(tagsFull)]
-  //console.log(tags)
-
 
   const router = useRouter();
-
- /*if(generatePage){
-  return(
-  <div>
-  {Generate(ingredientList,methodList,stepList)}</div>)
-  //return recipe
- }
- if(insertPage){
-  return(
-    <div>{Insert()}</div>)
- }
- if(displayPage){
-  Generate()
- }*/
 
   return (
     <div>
@@ -66,16 +44,6 @@ export default function Home(props) {
 
         </div>)
 
-    /*    {generatePage && <div>
-          <Generate ingredientList={props.ingredientList}methodList={props.methodList}stepList={props.stepList}></Generate>
-          PageLayout
-          </div>}
-        {displayPage && <div>
-          <Display></Display>
-          </div>}
-    </div>
-    
-  )*/
   function generatePageLoad(){
     generatePage = true;
     insertPage = false;

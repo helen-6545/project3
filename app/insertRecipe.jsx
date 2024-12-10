@@ -1,23 +1,10 @@
 'use server'
-import React from 'react';
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 
 
 export default async function InsertRecipes(formData) {
-    /*formData.get("recipeName")
-    formData.get("recipeImage")
-    formData.get("recipeSteps")*/
-
-    //console.log(formData.get("recipeSteps"))
-
-    let instructions = formData.get("recipeSteps")
-    let instructionsText = ""
-
-    //for(let i=0; i<instructions.length; i++){
-   //   instructionsText+=(instructions[i])
-   // }
 
     await prisma.recipes.create({
         data: {
@@ -29,16 +16,4 @@ export default async function InsertRecipes(formData) {
           likes: 0
         },
       });
-
-    /*console.log("test")
-    console.log(props)
-    await prisma.recipes.create({
-        data: {
-          name: props.recipe.name,
-          image: props.recipe.image,
-          stepNum: props.recipe.stepNum,
-          instructions: String(props.recipe.instructions),
-          tags: String(props.recipe.tag)
-        },
-      });*/
 }

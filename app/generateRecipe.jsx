@@ -1,18 +1,13 @@
 'use client';
 import React from 'react';
-//import {useState } from 'react'
 import {useRouter} from "next/navigation";
 import Generation from "./generation"
-//import {ingredientList, tags} from "./page"
-//import methodList from "./page"
-//import stepList from "./page"
 let generation = false
 
 let allIngredients =[]
 let allMethods =[]
 let potentialIngredients = []
 let step
-let allSteps = []
 let allStepsDisplay = []
 let tagList = []
 let allStepsString = ""
@@ -49,7 +44,7 @@ export default function Generate(props) {
  {dropdown5}
 <br></br>
 Select how many steps your recipe should be:
-<select id="stepnum">
+<select className="dropdown" id="stepnum">
   <option>1</option>
   <option>2</option>
   <option>3</option>
@@ -66,7 +61,7 @@ Select how many steps your recipe should be:
 
     function dropDown(num){
       return(
-        <select id={"ingredientTag"+num} key={"ingredientTag"+num}>
+        <select className="dropdown" id={"ingredientTag"+num} key={"ingredientTag"+num}>
           <option value="nothing" key={"nothing"+num}>
           
         </option>
@@ -84,14 +79,12 @@ Select how many steps your recipe should be:
       const tag4 = document.getElementById("ingredientTag4").value
       const tag5 = document.getElementById("ingredientTag5").value
       StepNum = document.getElementById("stepnum").value
-      //console.log(tag1,tag2,StepNum)
       Choices.push(tag1)
       Choices.push(tag2)
       Choices.push(tag3)
       Choices.push(tag4)
       Choices.push(tag5)
       Choices.push(StepNum)
-      //setListChoice(Choices)
       setSteps()
     }
 
@@ -121,10 +114,8 @@ Select how many steps your recipe should be:
             step = step.replace("{method}",allMethods[i])
             step = step.replace("{ingredient}",allIngredients[i])
             let stepP = <p key={"step"+i}>{step}</p>
-            allSteps.push(step)
             allStepsDisplay.push(stepP)
             allStepsString+=(step+",")
-            //allStepsString+="<p key={"+i+"}>"+step+"</p>"
         }
       generation=true
       router.refresh()

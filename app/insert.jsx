@@ -1,7 +1,5 @@
 'use client';
 import React from 'react';
-import {useState } from 'react'
-import {useRouter} from "next/navigation";
 
 import InsertIngredient from './insertIngredients'
 import InsertStep from './insertSteps'
@@ -14,9 +12,9 @@ export default function Insert() {
         <div><form action={InsertIngredient}>
 
         Enter ingredient name and tag here: (Ex: garlic, savory)<br></br>
-                Ingredient Name: <input id="ingredientName" name="ingredientName" defaultValue="Name"/>
+                Ingredient Name: <input className="textbox" id="ingredientName" name="ingredientName" defaultValue="Name"/>
                 <br></br>
-                Ingredient Tag: <input id="ingredientTag" name="ingredientTag" defaultValue="Tag"/>
+                Ingredient Tag: <input className="textbox" id="ingredientTag" name="ingredientTag" defaultValue="Tag"/>
                 <br></br>
                 <button className="enterButtons" type="submit">
                 Enter
@@ -26,7 +24,7 @@ export default function Insert() {
         <form action={InsertMethod}>
 
         Enter method here: (Ex: boil)<br></br>
-                Method Name: <input id="methodName" name="methodName" defaultValue="Name"/>
+                Method Name: <input className="textbox" id="methodName" name="methodName" defaultValue="Name"/>
                 <br></br>
                 <button className="enterButtons" type="submit">
                 Enter
@@ -36,7 +34,7 @@ export default function Insert() {
         <form action={InsertStep}>
 
         Enter step here: {text}<br></br>
-                Step: <input id="stepName" name="stepName" defaultValue="Step"/>
+                Step: <input className="textbox" id="stepName" name="stepName" defaultValue="Step"/>
                 <br></br>
                 <button className="enterButtons" type="submit">
                 Enter
