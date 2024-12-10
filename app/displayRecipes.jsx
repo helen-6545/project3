@@ -2,10 +2,9 @@
 import React from 'react';
 import {useState } from 'react'
 import {useRouter} from "next/navigation";
-import recipeList from "./page"
-//import parse from 'html-react-parser';
 
 
+let searchShow = []
 
 
 export default function Display(props) {
@@ -19,10 +18,19 @@ export default function Display(props) {
   let steps = recipeList.map(recipeList => recipeList.stepNum)
   let instructions = recipeList.map(recipeList => recipeList.instructions)
   let tags = recipeList.map(recipeList => recipeList.tag)
+  
   let likes = recipeList.map(recipeList => recipeList.likes)
 
   let dropDownText=dropDown()
-  let recipeText = RecipeShow()
+  
+  const [recipeText, setRecipeText] = useState("")
+
+  let showAll = []
+  for(let i=0; i<recipeList.length; i++){
+    showAll.push(i)
+  }
+  if(recipeText==""){
+  setRecipeText(RecipeShow(showAll))}
   //const parser = new DOMParser();
   //const text = parser.parseFromString(recipeText, "text/html");
 
@@ -31,38 +39,46 @@ export default function Display(props) {
   return (
     <div>
     {dropDownText}
-    <button className="enterButtons">
+    <button className="enterButtons" onClick={search}>
           Ready!
         </button><br></br><br></br>
 
         {recipeText}
 
     </div>)
-    function RecipeShow(){
-      let recipe=[]
 
-      
-      //console.log(list)
-      for(let i=0; i<recipeList.length; i++){
-      let list = instructions[i].split(',')
-      console.log(list)
-       recipe.push(<p>Recipe #{i+1}: {names[i]}</p>),
-       recipe.push(<img src={images[i]} alt='recipeImage' width='200'/>),
-       recipe.push(<p>Tags: {tags[i]}</p>)
-       //recipe.push(listMake(instructions[i]))
-       return(<div key={i}>
+    function search(){
+      const searchTag = document.getElementById("recipeTagfind").value
+      if(searchTag==="all"){
+        setRecipeText(RecipeShow(showAll))
+      }
+      else{
+        for(let i=0; i<recipeList.length; i++){
+        if(tags[i].includes(searchTag)){
+          searchShow.push(i)
+        }
+      }
+      setRecipeText(RecipeShow(searchShow))}
+      router.refresh()
+    }
+    function RecipeShow(props){
+      let text=[]
+      setRecipeText("")
+      for(let i=0; i<props.length; i++){
+        text.push(textForm(props[i]))
+      }
+      return text
+    }
+    function textForm(props){
+      let recipe=[]
+      let list = instructions[props].split(',')
+       recipe.push(<p>Recipe #{props+1}: {names[props]}</p>),
+       recipe.push(<img src={images[props]} alt='recipeImage' width='200'/>),
+       recipe.push(<p>Tags: {tags[props]}</p>)
+       return(<div key={"list"+props}>
         {recipe}<br></br>
         {list.map((list) => (
-        <p value={list} key={list}>{list}</p>))}</div>)
-       
-      }
-      return recipe
-    }
-    function listMake(props){
-      let list = props.split(',')
-      console.log(list)
-      {list.map((list) => (
-        recipe.push(<p value={list} key={list}>{list}</p>)))}
+        <p value={list} key={list}>{list}</p>))}<br></br><br></br><br></br></div>)
     }
     function dropDown(){
       return(
